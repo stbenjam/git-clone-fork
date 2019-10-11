@@ -61,7 +61,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if *upstreamURL != "" {
+	if upstreamURL != nil && *upstreamURL != "" {
 		fmt.Printf("setting fork remote (%s): %s\n", *remoteName, *upstreamURL)
 		cmd := exec.Command("git", "remote", "add", *remoteName, *upstreamURL)
 		cmd.Dir = repo
