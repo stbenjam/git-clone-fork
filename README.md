@@ -1,12 +1,7 @@
 # git clone-fork
 
-**git clone-fork**: clones a repository, and if it is a fork of a
-GitHub repository, sets that repo as a remote named 'upstream'.
-
-This isn't particularly robust or well tested, I was just scratching an
-itch when I was setting up a new machine, and had a lot of repos to
-setup. There might be something out there that does this already, but I
-didn't find anything.
+Clones a repository, and if it is a fork of a GitHub repository, sets
+that repo as a remote named 'upstream'.
 
 ## Motivation
 

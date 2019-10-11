@@ -11,7 +11,7 @@ fmt:
 	git diff --exit-code
 
 lint:
-	go run golang.org/x/lint/golint -set_exit_status *.go
+	go lint -set_exit_status *.go
 
 vet:
 	go vet .
