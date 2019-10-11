@@ -17,7 +17,7 @@ the repo is a fork, and if so, creating a remote for it.
 ## Installation
 
 1. Install [go](https://golang.org/doc/install)
-2. Run `go get github.com/stbenjam/git-clone-fork`
+2. Run `go get -u github.com/stbenjam/git-clone-fork`
 3. Call as `git clone-fork` or `git-clone-fork`
 
 ## Usage
