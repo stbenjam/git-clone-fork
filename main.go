@@ -22,7 +22,7 @@ func main() {
 	}
 
 	// Get owner and repo name
-	owner, repo := parseOwnerRepo(os.Args[1], http)
+	owner, repo := parseOwnerRepo(flag.Arg(0), http)
 
 	// Get details from GitHub
 	repository := *fetchRepoDetails(owner, repo)
@@ -73,6 +73,7 @@ func parseOwnerRepo(arg string, http *bool) (owner, repo string) {
 	} else {
 		parts := strings.Split(arg, "/")
 		if len(parts) != 2 {
+			fmt.Println("error: expected repo in form <user>/<repo> or a URI. Got: ", arg)
 			flag.Usage()
 			os.Exit(1)
 		}
