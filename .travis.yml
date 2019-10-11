@@ -1,0 +1,18 @@
+dist:     xenial
+sudo:     false
+language: go
+env:
+  - TF_LOG=debug TF_ACC=true TAGS="acceptance"
+go:
+  - 1.11.x
+  - 1.12.x
+git:
+  depth: 1
+go_import_path: github.com/stbenjam/git-clone-fork
+before_script:
+  - go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+install:
+  - go get -t -v ./...
+script:
+  - golangci-lint run
+  - go test -v -race ./...
