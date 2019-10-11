@@ -44,7 +44,7 @@ func main() {
 	cloneCmd.Stdout = os.Stdout
 	cloneCmd.Stderr = os.Stderr
 	if err := cloneCmd.Run(); err != nil {
-		exitOnError(err)
+		os.Exit(1)
 	}
 
 	if *repository.Fork {
@@ -54,7 +54,7 @@ func main() {
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		if err := cmd.Run(); err != nil {
-			exitOnError(err)
+			os.Exit(1)
 		}
 	}
 }
@@ -94,14 +94,4 @@ func fetchRepoDetails(owner, repo string) *github.Repository {
 	}
 
 	return repository
-}
-
-func exitOnError(err error) {
-	if err != nil {
-		if exit, ok := err.(*exec.ExitError); ok {
-			os.Exit(exit.ExitCode())
-		} else {
-			os.Exit(1)
-		}
-	}
 }
