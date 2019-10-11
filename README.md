@@ -1,6 +1,6 @@
 # git clone-fork
 
-**git clone-fork** - clones a repository, and if it is a fork of a
+**git clone-fork**: clones a repository, and if it is a fork of a
 GitHub repository, sets that repo as a remote named 'upstream'.
 
 This isn't particularly robust or well tested, I was just scratching an
@@ -27,10 +27,12 @@ the repo is a fork, and if so, creating a remote for it.
 
 ## Usage
 
-  git clone-fork <user>/<repo>|<clone url>
+```
+  git clone-fork user/repo|<clone url>
 
   -h Forces use of HTTP
-  -r [name] changes the name of 'upstream to something else'
+  -r [name] changes the name of 'upstream' to something else
+```
 
 ## Examples
 
