@@ -8,6 +8,17 @@ itch when I was setting up a new machine, and had a lot of repos to
 setup. There might be something out there that does this already, but I
 didn't find anything.
 
+## Motivation
+
+Often, I find myself repeating the same commands over and over:
+
+  1. git clone http://github.com/stbenjam/foo.git
+  2. cd foo
+  3. git remote add upstream http://github.com/bigcorp/foo.git
+
+This automates that process, by querying the GitHub API to find out if
+the repo is a fork, and if so, creating a remote for it.
+
 ## Installation
 
 1. Install [go](https://golang.org/doc/install)
@@ -84,17 +95,6 @@ origin	https://github.com/stbenjam/installer.git (push)
 upstream	https://github.com/openshift/installer.git (fetch)
 upstream	https://github.com/openshift/installer.git (push)
 ```
-
-## Motivation
-
-Often, I find myself repeating the same commands over and over:
-
-  1. git clone http://github.com/stbenjam/foo.git
-  2. cd foo
-  3. git remote add upstream http://github.com/bigcorp/foo.git
-
-This automates that process, by querying the GitHub API to find out if
-the repo is a fork, and if so, creating a remote for it.
 
 ## License
 
