@@ -16,6 +16,11 @@ func main() {
 	http := flag.Bool("h", false, "Force HTTP")
 	flag.Parse()
 
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage:\n\tgit clone-fork <user>/<repo>|URI\n\n")
+		flag.PrintDefaults()
+	}
+
 	if flag.NArg() != 1 {
 		flag.Usage()
 		os.Exit(1)
