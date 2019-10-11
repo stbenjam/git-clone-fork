@@ -41,12 +41,21 @@ func main() {
 	}
 
 	cloneCmd := exec.Command("git", "clone", originURL)
-	cloneCmd.Run()
+	cloneCmd.Stdout = os.Stdout
+	cloneCmd.Stderr = os.Stderr
+	if err := cloneCmd.Run(); err != nil {
+		exitOnError(err)
+	}
 
 	if *repository.Fork {
+		fmt.Printf("setting fork remote (%s): %s\n", *remoteName, upstreamURL)
 		cmd := exec.Command("git", "remote", "add", *remoteName, upstreamURL)
 		cmd.Dir = repo
-		cmd.Run()
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		if err := cmd.Run(); err != nil {
+			exitOnError(err)
+		}
 	}
 }
 
@@ -85,4 +94,14 @@ func fetchRepoDetails(owner, repo string) *github.Repository {
 	}
 
 	return repository
+}
+
+func exitOnError(err error) {
+	if err != nil {
+		if exit, ok := err.(*exec.ExitError); ok {
+			os.Exit(exit.ExitCode())
+		} else {
+			os.Exit(1)
+		}
+	}
 }
