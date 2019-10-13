@@ -5,6 +5,8 @@ import (
 	"flag"
 	"fmt"
 	"github.com/google/go-github/v28/github"
+	"github.com/tcnksm/go-gitconfig"
+	"golang.org/x/oauth2"
 	"net/url"
 	"os"
 	"os/exec"
@@ -108,10 +110,27 @@ func parseOwnerRepo(arg string, http *bool) (owner, repo string, err error) {
 	return
 }
 
+func getGitHubClient(ctx context.Context) (client *github.Client) {
+	token, err := gitconfig.GithubToken()
+
+	if token != "" && err == nil {
+		ts := oauth2.StaticTokenSource(
+			&oauth2.Token{
+				AccessToken: token,
+			},
+		)
+		tc := oauth2.NewClient(ctx, ts)
+		client = github.NewClient(tc)
+	} else {
+		client = github.NewClient(nil)
+	}
+
+	return client
+}
+
 func fetchRepoDetails(owner, repo string) (*github.Repository, error) {
 	ctx := context.Background()
-	client := github.NewClient(nil)
+	client := getGitHubClient(ctx)
 	repository, _, err := client.Repositories.Get(ctx, owner, repo)
-
 	return repository, err
 }
