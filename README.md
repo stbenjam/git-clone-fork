@@ -6,6 +6,14 @@
 Clones a repository, and if it is a fork of a GitHub repository, sets
 that repo as a remote named 'upstream'.
 
+Please note, that this utility makes API queries to determine if your
+repo is a fork, and depending on your source IP or your use of the API,
+you may be throttled and limited in the numer of API queries you can
+make. The solution is to add a token for GitHub in your `.gitconfig`
+file as [documented here](https://github.blog/2008-10-11-local-github-config/).
+
+git clone-fork will then use this token when talking to GitHub.
+
 ## Motivation
 
 Often, I find myself repeating the same commands over and over:
